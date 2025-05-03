@@ -6,6 +6,7 @@ def update_everything():
     """
     Runs helper.py main functions, in an interval of 10 minutes.
     """
+    print("Scheduler started...")
     main()
     calculate_general_room_availability()
     calculate_library_general_availability(7, 10)
