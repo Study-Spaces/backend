@@ -59,6 +59,10 @@ def get_library(library_id):
 
 @app.route("/api/libraries/", methods=["POST"])
 def create_library():
+    """
+    Creates a new library using the DB and SqlAlchemy.
+    :return: A JSON object from the DB representing a new library
+    """
     body = json.loads(request.data)
     name = body.get("name")
     hours = body.get("hours")
@@ -356,6 +360,11 @@ def update_room_by_external_id(external_id):
 
 @app.route("/api/libraries/external/<int:external_id>/", methods=["PUT"])
 def update_library_by_external_id(external_id):
+    """
+    Updates a specific library  from the db using SqlAlchemy.
+    :param external_id: An integer representing the external id
+    :return: A JSON object from the DB representing a specific library
+    """
     library = Library.query.filter_by(external_id=external_id).first()
     if library is None:
         return error_response("Library not found", 404)

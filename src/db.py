@@ -22,6 +22,10 @@ class Library(db.Model):
     library_reports = db.relationship('LibraryReport', backref='library', cascade="all, delete")
 
     def serialize(self):
+        """
+        Serializes this instance to a JSON.
+        :return: A JSON-serializable object.
+        """
         return {
             'id': self.id,
             'name': self.name,
@@ -52,6 +56,10 @@ class Room(db.Model):
     reports = db.relationship('RoomReport', backref='room', cascade="all, delete")
 
     def serialize(self):
+        """
+        Serializes this instance to a JSON.
+        :return: A JSON-serializable object.
+        """
         return {
             'id': self.id,
             "external_id": self.external_id,
@@ -76,6 +84,10 @@ class LibraryReport(db.Model):
     time_stamp = db.Column(db.DateTime, nullable=False, default=datetime.now)
 
     def serialize(self):
+        """
+        Serializes this instance to a JSON.
+        :return: A JSON-serializable object.
+        """
         return {
             'id': self.id,
             'libraries_id': self.libraries_id,
@@ -96,6 +108,10 @@ class RoomReport(db.Model):
     time_stamp = db.Column(db.DateTime, nullable=False, default=datetime.now)
 
     def serialize(self):
+        """
+        Serializes this instance to a JSON.
+        :return: A JSON-serializable object.
+        """
         return {
             'id': self.id,
             'room_id': self.room_id,

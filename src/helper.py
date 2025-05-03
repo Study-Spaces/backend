@@ -401,6 +401,9 @@ def calculate_bookable_room_window_availability(slots, room_ids):
         return None
 
 def determine_hours():
+    """
+    Finds the current library hours based on the current day of the week.
+    """
     days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]
     today = days[datetime.datetime.now().weekday()]
 
