@@ -255,7 +255,7 @@ def calculate_general_room_availability():
         else:
             requests.put(
                 BASE_URL + "/api/rooms/" + str(room_id) + "/",
-                json={"availability": None},
+                json={"availability": -1},
                 headers={"Content-Type": "application/json"}
             )
 
@@ -355,11 +355,9 @@ def calculate_library_general_availability(k_general=10, k_library=10):
 
         update_url = BASE_URL + "/api/libraries/" + str(lib["id"]) + "/"
         if final_avg is not None:
-            print(f"{lib['name']}: {round(final_avg, 2)}")
+            requests.put(update_url, json={"fullness": final_avg}, headers={"Content-Type": "application/json"})
         else:
-            print(f"{lib['name']}: No data")
-
-        requests.put(update_url, json={"fullness": final_avg}, headers={"Content-Type": "application/json"})
+            requests.put(update_url, json={"fullness": -1}, headers={"Content-Type": "application/json"})
 
 def calculate_bookable_room_window_availability(slots, room_ids):
     """
